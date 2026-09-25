@@ -63,7 +63,10 @@ export default function App() {
 
   // Perhitungan Pergerakan Mouse 3D Tilt
   const handleMouseMove = (e) => {
-    const { clientX, clientY } = e;
+    // Ambil posisi dari event mouse atau event touch jari di HP
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    
     const { innerWidth, innerHeight } = window;
     const x = ((clientX / innerWidth) - 0.5) * 35;
     const y = ((clientY / innerHeight) - 0.5) * 35;
@@ -115,6 +118,7 @@ export default function App() {
   return (
     <div 
       onMouseMove={handleMouseMove}
+      onTouchMove={handleMouseMove}
       className="min-h-screen bg-[#0d0203] text-white font-sans selection:bg-[#ff2d55] selection:text-white pb-28 pt-6 px-4 md:px-8 relative overflow-hidden"
     >
       {/* Background Ambient Glowing Orbs */}
@@ -754,8 +758,8 @@ export default function App() {
           transform: `translate(-50%, -50%) perspective(500px) rotateX(${mousePos.y * 1.5}deg) rotateY(${-mousePos.x * 1.5}deg) rotateZ(${mousePos.x * 2}deg)`,
           transformStyle: 'preserve-3d',
         }}
-        className="fixed w-10 h-10 border-2 border-red-500/80 rounded-xl pointer-events-none z-50 transition-transform duration-75 ease-out shadow-[0_0_15px_rgba(255,45,85,0.6)] flex items-center justify-center bg-red-950/20 backdrop-blur-[2px]"
-      >
+        className="hidden md:flex fixed w-10 h-10 border-2 border-red-500/80 rounded-xl pointer-events-none z-50 transition-transform ...">
+
         <div className="w-2 h-2 bg-red-400 rounded-full shadow-[0_0_8px_#ff2d55]" />
       </div>
     </div>
