@@ -1,10 +1,5 @@
-import React, { useState } from 'react';
-import { 
-  User, Briefcase, Award, Mail, Phone, MapPin, 
-  ChevronRight, ExternalLink, ShieldCheck, Users, 
-  Sparkles, Heart, MessageSquare, Send, CheckCircle2,
-  FileCheck, Image as ImageIcon, Eye, X, Download, GraduationCap
-} from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { User, Briefcase, Award, Mail, Phone, MapPin, ChevronRight, ExternalLink, ShieldCheck, Users, Sparkles, Heart, MessageSquare, Send, CheckCircle2, FileCheck, Image as ImageIcon, Eye, X, Download, GraduationCap } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 export default function App() {
@@ -72,6 +67,25 @@ export default function App() {
     const y = ((clientY / innerHeight) - 0.5) * 35;
     setMousePos({ x, y });
   };
+ 
+  // Perhitungan Efek 3D Otomatis saat Halaman di-Scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      
+      if (maxScroll > 0) {
+        const scrollPercent = (scrollY / maxScroll) - 0.5;
+        const x = Math.sin(scrollPercent * Math.PI) * 15;
+        const y = Math.cos(scrollPercent * Math.PI) * 15;
+
+        setMousePos({ x, y });
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleLike = () => {
     if (!hasLiked) {
@@ -202,11 +216,11 @@ export default function App() {
                   <div className="relative w-48 h-56 rounded-2xl bg-gradient-to-br from-red-900/50 via-black to-red-950/80 border border-red-500/50 p-3 shadow-2xl backdrop-blur-md flex flex-col items-center justify-between group">
                     <div className="w-full h-36 rounded-xl bg-gradient-to-t from-red-950 to-red-800 flex items-center justify-center relative overflow-hidden border border-red-500/30 shadow-inner">
                       <img 
-    src="/profil.jpeg" 
-    alt="Agung Frakoso" 
-    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" 
-  />
-  <div className="absolute inset-0 bg-gradient-to-t from-[#0d0203] via-transparent to-transparent opacity-40" />
+                        src="/profil.jpeg" 
+                        alt="Agung Frakoso" 
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" 
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0d0203] via-transparent to-transparent opacity-40" />
                     </div>
 
                     <div className="text-center w-full py-1">
@@ -574,22 +588,26 @@ export default function App() {
               </h3>
               <p className="text-xs text-gray-400 mb-6">Kirimkan pesan langsung untuk tawaran pekerjaan atau kolaborasi.</p>
 
-              <form onSubmit={triggerHireMeConfetti} className="space-y-4">
+              <form onSubmit={handleSendWhatsApp} className="space-y-4">
                 <div>
                   <label className="block text-xs font-medium text-gray-300 mb-1">Nama Lengkap</label>
                   <input 
                     type="text" 
                     required 
                     placeholder="Masukkan nama Anda"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="w-full px-4 py-3 bg-[#22070a] border border-red-900/40 rounded-xl text-xs text-white focus:outline-none focus:border-red-500"
                   />
                 </div>
                 <div>
                   <label className="block text-xs font-medium text-gray-300 mb-1">Email / Kontak</label>
                   <input 
-                    type="email" 
+                    type="text" 
                     required 
-                    placeholder="nama@email.com"
+                    placeholder="nama@email.com / 0812xxx"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="w-full px-4 py-3 bg-[#22070a] border border-red-900/40 rounded-xl text-xs text-white focus:outline-none focus:border-red-500"
                   />
                 </div>
@@ -599,6 +617,8 @@ export default function App() {
                     rows="4" 
                     required 
                     placeholder="Tuliskan tawaran atau pertanyaan Anda..."
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className="w-full px-4 py-3 bg-[#22070a] border border-red-900/40 rounded-xl text-xs text-white focus:outline-none focus:border-red-500 resize-none"
                   />
                 </div>
@@ -607,7 +627,7 @@ export default function App() {
                   className="w-full py-3 bg-gradient-to-r from-red-600 to-red-800 hover:from-red-500 hover:to-red-700 text-white font-bold text-xs rounded-xl shadow-lg shadow-red-900/50 transition-all flex items-center justify-center gap-2"
                 >
                   <Send className="w-4 h-4" />
-                  <span>Kirim Pesan Sekarang</span>
+                  <span>Kirim Pesan ke WhatsApp</span>
                 </button>
               </form>
             </div>
@@ -750,6 +770,7 @@ export default function App() {
           );
         })}
       </nav>
+
       {/* Custom 3D Rotating Mouse Cursor Pointer */}
       <div 
         style={{
@@ -758,8 +779,8 @@ export default function App() {
           transform: `translate(-50%, -50%) perspective(500px) rotateX(${mousePos.y * 1.5}deg) rotateY(${-mousePos.x * 1.5}deg) rotateZ(${mousePos.x * 2}deg)`,
           transformStyle: 'preserve-3d',
         }}
-        className="hidden md:flex fixed w-10 h-10 border-2 border-red-500/80 rounded-xl pointer-events-none z-50 transition-transform ...">
-
+        className="hidden md:flex fixed w-10 h-10 border-2 border-red-500/80 rounded-xl pointer-events-none z-50 transition-transform duration-75 ease-out items-center justify-center shadow-lg shadow-red-600/30 backdrop-blur-sm"
+      >
         <div className="w-2 h-2 bg-red-400 rounded-full shadow-[0_0_8px_#ff2d55]" />
       </div>
     </div>
