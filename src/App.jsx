@@ -1,0 +1,763 @@
+import React, { useState } from 'react';
+import { 
+  User, Briefcase, Award, Mail, Phone, MapPin, 
+  ChevronRight, ExternalLink, ShieldCheck, Users, 
+  Sparkles, Heart, MessageSquare, Send, CheckCircle2,
+  FileCheck, Image as ImageIcon, Eye, X, Download, GraduationCap
+} from 'lucide-react';
+import confetti from 'canvas-confetti';
+
+export default function App() {
+  const [activeTab, setActiveTab] = useState('home');
+  const [subTab, setSubTab] = useState('bio');
+  const [likes, setLikes] = useState(14800);
+  const [hasLiked, setHasLiked] = useState(false);
+  const [showContactModal, setShowContactModal] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+
+  // Data Sertifikat & Dokumentasi
+  const galleryItems = [
+    {
+      id: 1,
+      type: 'certificate',
+      title: 'Sertifikat Lisensi AVSEC (Aviation Security)',
+      category: 'Sertifikasi Keamanan Penerbangan',
+      year: '2022',
+      issuer: 'Direktorat Jenderal Perhubungan Udara',
+      image: 'avsec.jpeg',
+      description: 'Lisensi resmi personel keamanan penerbangan untuk pemeriksaan penumpang, barang kargo, dan akses area terbatas Bandara.'
+    },
+    {
+      id: 2,
+      type: 'certificate',
+      title: 'Sertifikasi Floor Management development program',
+      category: 'Sertifikasi Manajemen Operasional',
+      year: '2025',
+      issuer: 'HEAD OF HUMAN CAPITAL & LEGAL',
+      image: 'fmdp.jpeg',
+      description: 'Penghargaan dan kelulusan pelatihan kepemimpinan area, kontrol persediaan barang, serta standar kualitas pelayanan konsumen.'
+    },
+    {
+      id: 3,
+      type: 'documentation',
+      title: 'Dokumentasi Tugas Pengawasan Area Avsec',
+      category: 'Dokumentasi Kerja (Soekarno-Hatta)',
+      year: '2022',
+      issuer: 'Bandara Soekarno-Hatta',
+      image: 'https://images.unsplash.com/photo-1542296332-2e4473faf563?auto=format&fit=crop&w=800&q=80',
+      description: 'Kegiatan pemantauan rutin akses masuk terminal dan koordinasi keamanan bersama tim AVSEC.'
+    },
+    {
+      id: 4,
+      type: 'documentation',
+      title: 'Operasional & Stock keeper',
+      category: 'Dokumentasi Kerja (Richeese Factory)',
+      year: '2024 - 2026',
+      issuer: 'Richeese Factory',
+      image: 'crew.jpeg',
+      description: 'Supervisi tim outlet, briefing harian karyawan, serta memastikan kepuasan pelanggan di area dining room.'
+    }
+  ];
+
+  // Perhitungan Pergerakan Mouse 3D Tilt
+  const handleMouseMove = (e) => {
+    const { clientX, clientY } = e;
+    const { innerWidth, innerHeight } = window;
+    const x = ((clientX / innerWidth) - 0.5) * 35;
+    const y = ((clientY / innerHeight) - 0.5) * 35;
+    setMousePos({ x, y });
+  };
+
+  const handleLike = () => {
+    if (!hasLiked) {
+      setLikes(prev => prev + 1);
+      setHasLiked(true);
+      confetti({
+        particleCount: 50,
+        spread: 60,
+        origin: { y: 0.8 },
+        colors: ['#ff2d55', '#e60033', '#990022']
+      });
+    } else {
+      setLikes(prev => prev - 1);
+      setHasLiked(false);
+    }
+  };
+
+  const handleSendWhatsApp = (e) => {
+    e.preventDefault();
+    
+    // MASUKKAN NOMOR WHATSAPP ANDA DI SINI (Ganti dengan nomor asli Anda)
+    const phoneNumber = "6282123968224"; 
+    
+    const text = `Halo Agung Frakoso, ada pesan baru dari Portofolio Web:\n\n` +
+                 `*Nama:* ${formData.name}\n` +
+                 `*Email/Kontak:* ${formData.email}\n` +
+                 `*Pesan:* ${formData.message}`;
+
+    const encodedText = encodeURIComponent(text);
+    const waUrl = `https://wa.me/${phoneNumber}?text=${encodedText}`;
+
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.6 },
+      colors: ['#ff2d55', '#ffffff', '#ff6b81']
+    });
+
+    window.open(waUrl, '_blank');
+    setShowContactModal(false);
+    setFormData({ name: '', email: '', message: '' });
+  };
+
+  return (
+    <div 
+      onMouseMove={handleMouseMove}
+      className="min-h-screen bg-[#0d0203] text-white font-sans selection:bg-[#ff2d55] selection:text-white pb-28 pt-6 px-4 md:px-8 relative overflow-hidden"
+    >
+      {/* Background Ambient Glowing Orbs */}
+      <div className="fixed top-[-10%] left-[-10%] w-[500px] h-[500px] bg-red-900/20 rounded-full blur-[140px] pointer-events-none" />
+      <div className="fixed bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-[#ff2d55]/15 rounded-full blur-[150px] pointer-events-none" />
+
+      {/* Main Container */}
+      <div className="max-w-4xl mx-auto space-y-6 relative z-10">
+        
+        {/* Header / Status Bar Top */}
+        <header className="flex justify-between items-center bg-[#1a0507]/80 backdrop-blur-md p-4 rounded-2xl border border-red-900/40 shadow-lg shadow-red-950/50">
+          <div className="flex items-center gap-3">
+            <div className="relative">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-red-800 to-red-500 flex items-center justify-center font-bold text-lg shadow-md border border-red-400/30">
+                AF
+              </div>
+              <span className="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 rounded-full border-2 border-[#0d0203]" />
+            </div>
+            <div>
+              <h1 className="text-sm font-semibold text-gray-200">@agungfrakoso</h1>
+              <div className="flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="text-xs text-emerald-400 font-medium">Floor Mgr & AVSEC | Jakarta & Tangerang</span>
+              </div>
+            </div>
+          </div>
+
+          <button 
+            onClick={() => setShowContactModal(true)}
+            className="px-4 py-2 bg-gradient-to-r from-[#ff2d55] to-[#b30024] hover:from-[#e60033] hover:to-[#80001a] text-white text-xs font-semibold rounded-xl shadow-lg shadow-red-600/30 transition-all hover:scale-105 active:scale-95 flex items-center gap-2 border border-red-400/20"
+          >
+            <Mail className="w-3.5 h-3.5" />
+            <span>Contact Me</span>
+          </button>
+        </header>
+
+        {/* Dynamic Slide Content */}
+        {activeTab === 'home' && (
+          <div className="space-y-6 animate-fadeIn">
+            
+            {/* About Me Main Card dengan Efek 3D Tilt Responsif */}
+            <div 
+              style={{
+                transform: `perspective(1200px) rotateX(${-mousePos.y * 0.4}deg) rotateY(${mousePos.x * 0.4}deg)`,
+                transformStyle: 'preserve-3d',
+                transition: 'transform 0.1s ease-out'
+              }}
+              className="relative bg-gradient-to-b from-[#180507] to-[#120304] border border-red-600/30 rounded-3xl p-6 md:p-8 shadow-2xl shadow-red-950/60 overflow-hidden group hover:border-red-500/50"
+            >
+              <div className="absolute top-0 right-0 w-64 h-64 bg-red-600/10 rounded-full blur-3xl pointer-events-none" />
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center" style={{ transform: 'translateZ(20px)' }}>
+                <div className="md:col-span-2 space-y-4">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-950/80 border border-red-500/30 text-red-400 text-xs font-medium">
+                    <Sparkles className="w-3.5 h-3.5" />
+                    <span>Personal Portfolio</span>
+                  </div>
+
+                  <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
+                    About <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-400 via-red-500 to-rose-300">Me</span>
+                  </h2>
+
+                  <p className="text-gray-300 text-sm leading-relaxed">
+                    Saya <strong className="text-white">Agung Frakoso</strong>, berusia 23 tahun. Berpengalaman di bidang <span className="text-red-400 font-medium">Aviation Security (AVSEC)</span> di Bandara Soekarno-Hatta (2022) serta posisi <span className="text-red-400 font-medium">Floor Manager</span> di Richeese Factory (2024 - 2026). Berkomitmen tinggi pada kedisiplinan, keselamatan operasional, dan kepemimpinan tim.
+                  </p>
+
+                  <div className="pt-2 flex flex-wrap gap-4 border-t border-red-900/30">
+                    <div className="flex items-center gap-2 text-xs text-gray-400">
+                      <MapPin className="w-4 h-4 text-red-500" />
+                      <span>Soekarno-Hatta / Tangerang & Jakarta</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-xs text-gray-400">
+                      <User className="w-4 h-4 text-red-500" />
+                      <span>23 Tahun</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Avatar Card 3D */}
+                <div className="flex justify-center md:justify-end" style={{ transform: 'translateZ(40px)' }}>
+                  <div className="relative w-48 h-56 rounded-2xl bg-gradient-to-br from-red-900/50 via-black to-red-950/80 border border-red-500/50 p-3 shadow-2xl backdrop-blur-md flex flex-col items-center justify-between group">
+                    <div className="w-full h-36 rounded-xl bg-gradient-to-t from-red-950 to-red-800 flex items-center justify-center relative overflow-hidden border border-red-500/30 shadow-inner">
+                      <img 
+    src="/profil.jpeg" 
+    alt="Agung Frakoso" 
+    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" 
+  />
+  <div className="absolute inset-0 bg-gradient-to-t from-[#0d0203] via-transparent to-transparent opacity-40" />
+                    </div>
+
+                    <div className="text-center w-full py-1">
+                      <p className="text-xs font-bold text-white tracking-wide">AGUNG FRAKOSO</p>
+                      <p className="text-[10px] text-red-400 font-medium">Certified AVSEC & Floor Mgr</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Stats Bar */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 pt-6 border-t border-red-900/40" style={{ transform: 'translateZ(15px)' }}>
+                <div className="bg-red-950/30 p-3 rounded-xl border border-red-900/30 text-center">
+                  <h4 className="text-2xl font-bold text-red-400">100%</h4>
+                  <p className="text-[11px] text-gray-400">Kepatuhan SOP & Keamanan</p>
+                </div>
+                <div className="bg-red-950/30 p-3 rounded-xl border border-red-900/30 text-center">
+                  <h4 className="text-2xl font-bold text-red-400">3+</h4>
+                  <p className="text-[11px] text-gray-400">Tahun Pengalaman Kerja</p>
+                </div>
+                <div className="bg-red-950/30 p-3 rounded-xl border border-red-900/30 text-center">
+                  <h4 className="text-2xl font-bold text-red-400">20+</h4>
+                  <p className="text-[11px] text-gray-400">Anggota Tim Dikelola</p>
+                </div>
+                <div className="bg-red-950/30 p-3 rounded-xl border border-red-900/30 text-center">
+                  <h4 className="text-2xl font-bold text-red-400">24/7</h4>
+                  <p className="text-[11px] text-gray-400">Kesiapsiagaan Krisis</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Sub Nav Tabs */}
+            <div className="flex border-b border-red-900/40 gap-6 text-sm font-semibold">
+              <button 
+                onClick={() => setSubTab('bio')}
+                className={`pb-3 flex items-center gap-2 border-b-2 transition-colors ${subTab === 'bio' ? 'border-red-500 text-red-400' : 'border-transparent text-gray-400 hover:text-gray-200'}`}
+              >
+                <User className="w-4 h-4" />
+                <span>Personal Bio & Informasi Profil</span>
+              </button>
+            </div>
+
+            {/* Section Rincian Informasi Profil */}
+            {subTab === 'bio' && (
+              <div className="bg-[#180507] border border-red-600/30 rounded-3xl p-6 md:p-8 space-y-6">
+                <h3 className="text-lg font-bold text-white flex items-center gap-2">
+                  <User className="w-5 h-5 text-red-500" />
+                  <span>Rincian Informasi Profil</span>
+                </h3>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="bg-[#22070a] border border-red-900/40 p-4 rounded-xl">
+                    <p className="text-[10px] text-red-400 font-mono">Nama Lengkap</p>
+                    <p className="text-sm font-bold text-white mt-1">Agung Frakoso</p>
+                  </div>
+
+                  <div className="bg-[#22070a] border border-red-900/40 p-4 rounded-xl">
+                    <p className="text-[10px] text-red-400 font-mono">Usia</p>
+                    <p className="text-sm font-bold text-white mt-1">23 Tahun</p>
+                  </div>
+
+                  <div className="bg-[#22070a] border border-red-900/40 p-4 rounded-xl">
+                    <p className="text-[10px] text-red-400 font-mono">Pendidikan Terakhir</p>
+                    <p className="text-sm font-bold text-white mt-1">SMA / SMK / Sederajat, Pendidikan staff penerbangan & pramugari</p>
+                  </div>
+
+                  <div className="bg-[#22070a] border border-red-900/40 p-4 rounded-xl">
+                    <p className="text-[10px] text-red-400 font-mono">Lokasi Operasional</p>
+                    <p className="text-sm font-bold text-white mt-1">Soekarno-Hatta / Tangerang & Jakarta, Bangka belitung</p>
+                  </div>
+
+                  <div className="bg-[#22070a] border border-red-900/40 p-4 rounded-xl">
+                    <p className="text-[10px] text-red-400 font-mono">Ketersediaan Karir</p>
+                    <p className="text-sm font-bold text-emerald-400 mt-1">Open for Opportunities</p>
+                  </div>
+
+                  <div className="bg-[#22070a] border border-red-900/40 p-4 rounded-xl">
+                    <p className="text-[10px] text-red-400 font-mono">Fokus Keahlian</p>
+                    <p className="text-sm font-bold text-white mt-1">Avsec | Floor Manager | Frond end dev</p>
+                  </div>
+                </div>
+
+                <div className="bg-[#22070a] border border-red-900/50 p-5 rounded-2xl space-y-3">
+                  <div className="flex items-center gap-2 text-red-400 font-bold text-sm">
+                    <GraduationCap className="w-5 h-5 text-red-500" />
+                    <span>Latar Belakang Pendidikan</span>
+                  </div>
+
+                  <div className="flex justify-between items-start flex-wrap gap-2 pt-2 border-t border-red-900/30">
+                    <div>
+                      <h4 className="text-sm font-bold text-white">UNIVERSITAS GUNADARMA (S1) Sistem informasi</h4>
+                      <p className="text-xs text-gray-400 mt-0.5">Masih melanjutkan study</p>
+                    </div>
+                    <span className="px-3 py-1 bg-red-950 border border-red-800/50 rounded-full text-[11px] text-red-300 font-medium">
+                      Status: Soon
+                    </span>
+                  </div>
+
+                  <p className="text-xs text-gray-300 leading-relaxed pt-1">
+                    Fokus pada kedisiplinan, pelatihan berdasarkan kompetensi program study, serta pengembangan komunikasi publik.
+                  </p>
+                </div>
+
+                <div className="bg-[#22070a] border border-red-900/50 p-5 rounded-2xl space-y-3">
+                  <div className="flex items-center gap-2 text-red-400 font-bold text-sm">
+                    <GraduationCap className="w-5 h-5 text-red-500" />
+                    <span>Latar Belakang Pendidikan</span>
+                  </div>
+
+                  <div className="flex justify-between items-start flex-wrap gap-2 pt-2 border-t border-red-900/30">
+                    <div>
+                      <h4 className="text-sm font-bold text-white">Pendidikan staff penerbangan & pramugari</h4>
+                      <p className="text-xs text-gray-400 mt-0.5">Lulus dengan Predikat Baik & Memiliki Sertifikasi Pelatihan Operasional</p>
+                    </div>
+                    <span className="px-3 py-1 bg-red-950 border border-red-800/50 rounded-full text-[11px] text-red-300 font-medium">
+                      Status: Lulus
+                    </span>
+                  </div>
+
+                  <p className="text-xs text-gray-300 leading-relaxed pt-1">
+                    Fokus pada kedisiplinan, pelatihan dasar, kepatuhan prosedur keselamatan, serta pengembangan komunikasi publik.
+                  </p>
+                </div>
+
+               <div className="bg-[#22070a] border border-red-900/50 p-5 rounded-2xl space-y-3">
+                  <div className="flex items-center gap-2 text-red-400 font-bold text-sm">
+                    <GraduationCap className="w-5 h-5 text-red-500" />
+                    <span>Latar Belakang Pendidikan</span>
+                  </div>
+
+                  <div className="flex justify-between items-start flex-wrap gap-2 pt-2 border-t border-red-900/30">
+                    <div>
+                      <h4 className="text-sm font-bold text-white">SMK N1 TANJUNG PANDAN RPL</h4>
+                      <p className="text-xs text-gray-400 mt-0.5">Lulus dengan Predikat Baik & Memiliki Sertifikasi Pelatihan</p>
+                    </div>
+                    <span className="px-3 py-1 bg-red-950 border border-red-800/50 rounded-full text-[11px] text-red-300 font-medium">
+                      Status: Lulus
+                    </span>
+                  </div>
+
+                  <p className="text-xs text-gray-300 leading-relaxed pt-1">
+                    Fokus pada kedisiplinan, pelatihan dasar, kepatuhan prosedur keselamatan, serta pengembangan komunikasi publik.
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {activeTab === 'experience' && (
+          <div className="space-y-6 animate-fadeIn">
+            <div className="bg-[#180507] border border-red-600/30 rounded-3xl p-6 md:p-8 shadow-xl">
+              <h3 className="text-2xl font-bold mb-6 text-white flex items-center gap-2">
+                <Briefcase className="w-6 h-6 text-red-500" />
+                <span>Pengalaman Kerja</span>
+              </h3>
+
+              <div className="space-y-6 relative before:absolute before:inset-0 before:left-3.5 before:w-0.5 before:bg-gradient-to-b before:from-red-500 before:via-red-800 before:to-transparent">
+                
+                {/* Richeese Factory */}
+                <div className="relative pl-8 group">
+                  <div className="absolute left-0 top-1.5 w-7 h-7 rounded-full bg-[#0d0203] border-2 border-red-500 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <div className="w-2.5 h-2.5 rounded-full bg-red-500" />
+                  </div>
+                  <div className="bg-[#22070a] border border-red-900/40 p-5 rounded-2xl hover:border-red-500/50 transition-colors">
+                    <div className="flex justify-between items-start flex-wrap gap-2 mb-2">
+                      <div>
+                        <h4 className="text-lg font-bold text-white">Floor Manager</h4>
+                        <p className="text-xs text-red-400 font-medium">Richeese Factory</p>
+                      </div>
+                      <span className="px-3 py-1 bg-red-950 border border-red-800/50 rounded-full text-xs text-red-300 font-medium">
+                        20 Oktober 2025 - 31 juli 2026
+                      </span>
+                    </div>
+                    <ul className="text-xs text-gray-300 space-y-2 list-disc list-inside mt-3">
+                      <li>Mengawasi alur operasional harian outlet dan kualitas pelayanan pelanggan.</li>
+                      <li>Memimpin tim operasional floor, efisiensi persediaan stok, serta standar kebersihan.</li>
+                      <li>Mengelola penanganan komplain pelanggan secara proaktif dengan tingkat kepuasan tinggi.</li>
+                      <li>Mengelola perhitungan stock opname dan pelakukan penginputan.</li>
+                      <li>Mengelola cost and lost pada oprasional.</li>
+                      <li>Melakukan laporan pnl,cmo,so asset dan pattycast.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Richeese Factory */}
+                <div className="relative pl-8 group">
+                  <div className="absolute left-0 top-1.5 w-7 h-7 rounded-full bg-[#0d0203] border-2 border-red-500 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <div className="w-2.5 h-2.5 rounded-full bg-red-500" />
+                  </div>
+                  <div className="bg-[#22070a] border border-red-900/40 p-5 rounded-2xl hover:border-red-500/50 transition-colors">
+                    <div className="flex justify-between items-start flex-wrap gap-2 mb-2">
+                      <div>
+                        <h4 className="text-lg font-bold text-white">Leader</h4>
+                        <p className="text-xs text-red-400 font-medium">Richeese Factory</p>
+                      </div>
+                      <span className="px-3 py-1 bg-red-950 border border-red-800/50 rounded-full text-xs text-red-300 font-medium">
+                        2025 - 20 Oktober 2025
+                      </span>
+                    </div>
+                    <ul className="text-xs text-gray-300 space-y-2 list-disc list-inside mt-3">
+                      <li>Mengawasi alur operasional harian outlet dan kualitas pelayanan pelanggan.</li>
+                      <li>Memimpin tim operasional floor, efisiensi persediaan stok, serta standar kebersihan.</li>
+                      <li>Mengelola penanganan komplain pelanggan secara proaktif dengan tingkat kepuasan tinggi.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Richeese Factory */}
+                <div className="relative pl-8 group">
+                  <div className="absolute left-0 top-1.5 w-7 h-7 rounded-full bg-[#0d0203] border-2 border-red-500 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <div className="w-2.5 h-2.5 rounded-full bg-red-500" />
+                  </div>
+                  <div className="bg-[#22070a] border border-red-900/40 p-5 rounded-2xl hover:border-red-500/50 transition-colors">
+                    <div className="flex justify-between items-start flex-wrap gap-2 mb-2">
+                      <div>
+                        <h4 className="text-lg font-bold text-white">Crew (stock keeper,Kitchen,Cashier dan lobby)</h4>
+                        <p className="text-xs text-red-400 font-medium">Richeese Factory</p>
+                      </div>
+                      <span className="px-3 py-1 bg-red-950 border border-red-800/50 rounded-full text-xs text-red-300 font-medium">
+                        2024 - 2025
+                      </span>
+                    </div>
+                    <ul className="text-xs text-gray-300 space-y-2 list-disc list-inside mt-3">
+                      <li>Memastikan alur in out barang berjalan dengan sesuai sop yang berlaku.</li>
+                      <li>Melakukan stock opname harian & mingguan.</li>
+                      <li>Mengelola dan memastikan ketersedian barang dan melapor barang yang perlu diorder.</li>
+                      <li>Melakukan tugas kitchen dan memastikan product yang di olah sesuai dengan work intruction.</li>
+                      <li>Melakukan tugas cashier sesuai dengan sop dan sugest selling bertujuan untuk menaikan sales.</li>
+                      <li>Memastikan seluruh lobby resto bersih dari bekas makanan dan memastikan customer nyaman.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Aviation Security */}
+                <div className="relative pl-8 group">
+                  <div className="absolute left-0 top-1.5 w-7 h-7 rounded-full bg-[#0d0203] border-2 border-red-800 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <div className="w-2.5 h-2.5 rounded-full bg-red-800" />
+                  </div>
+                  <div className="bg-[#22070a] border border-red-900/40 p-5 rounded-2xl hover:border-red-500/50 transition-colors">
+                    <div className="flex justify-between items-start flex-wrap gap-2 mb-2">
+                      <div>
+                        <h4 className="text-lg font-bold text-white">Aviation Security (AVSEC)</h4>
+                        <p className="text-xs text-red-400 font-medium">Bandara Internasional Soekarno-Hatta</p>
+                      </div>
+                      <span className="px-3 py-1 bg-red-950 border border-red-800/50 rounded-full text-xs text-red-300 font-medium">
+                        2022
+                      </span>
+                    </div>
+                    <ul className="text-xs text-gray-300 space-y-2 list-disc list-inside mt-3">
+                      <li>Bertanggung jawab atas prosedur keamanan pemeriksaan barang & penumpang penerbangan.</li>
+                      <li>Memastikan kepatuhan ketat terhadap regulasi keselamatan penerbangan sipil.</li>
+                      <li>Menangani situasi darurat serta kontrol akses pintu keamanan area terbatas terminal.</li>
+                    </ul>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        )}
+
+        {activeTab === 'gallery' && (
+          <div className="space-y-6 animate-fadeIn">
+            <div className="bg-[#180507] border border-red-600/30 rounded-3xl p-6 md:p-8 shadow-xl">
+              <div className="flex justify-between items-center flex-wrap gap-4 mb-6">
+                <div>
+                  <h3 className="text-2xl font-bold text-white flex items-center gap-2">
+                    <Award className="w-6 h-6 text-red-500" />
+                    <span>Sertifikat & Dokumentasi Kerja</span>
+                  </h3>
+                  <p className="text-xs text-gray-400 mt-1">Bukti kualifikasi sertifikasi dan rekaman kegiatan operasional kerja.</p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {galleryItems.map((item) => (
+                  <div 
+                    key={item.id}
+                    onClick={() => setSelectedImage(item)}
+                    className="group bg-[#22070a] border border-red-900/40 rounded-2xl overflow-hidden cursor-pointer hover:border-red-500/60 transition-all duration-300 hover:-translate-y-1 shadow-lg flex flex-col justify-between"
+                  >
+                    {/* Wadah Gambar Full View tanpa Terpotong */}
+                    <div className="relative w-full h-56 bg-black/60 flex items-center justify-center p-2 border-b border-red-900/30 overflow-hidden">
+                      <img 
+                        src={item.image} 
+                        alt={item.title}
+                        className="max-w-full max-h-full object-contain rounded-lg group-hover:scale-105 transition-transform duration-500" 
+                      />
+                      
+                      {/* Badge Kategori */}
+                      <span className="absolute top-3 left-3 px-3 py-1 bg-red-950/90 border border-red-500/40 rounded-full text-[10px] text-red-300 font-semibold backdrop-blur-md shadow-md">
+                        {item.category}
+                      </span>
+
+                      {/* Ikon Preview saat Hover */}
+                      <div className="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-red-600/90 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-lg">
+                        <Eye className="w-4 h-4" />
+                      </div>
+                    </div>
+
+                    {/* Deskripsi Informasi */}
+                    <div className="p-4 space-y-2 flex-1 flex flex-col justify-between">
+                      <div>
+                        <div className="flex justify-between items-baseline gap-2 mb-1">
+                          <h4 className="text-sm font-bold text-white group-hover:text-red-400 transition-colors leading-tight">{item.title}</h4>
+                          <span className="text-[10px] text-gray-400 font-mono shrink-0">{item.year}</span>
+                        </div>
+                        <p className="text-xs text-gray-400 line-clamp-2">{item.description}</p>
+                      </div>
+
+                      <div className="pt-2 border-t border-red-900/20 flex items-center justify-between text-[11px] text-red-400 font-medium">
+                        <span>Penerbit: {item.issuer}</span>
+                        <span className="flex items-center gap-1 group-hover:underline">Lihat Detail <ChevronRight className="w-3 h-3" /></span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {activeTab === 'skills' && (
+          <div className="space-y-6 animate-fadeIn">
+            <div className="bg-[#180507] border border-red-600/30 rounded-3xl p-6 md:p-8 shadow-xl">
+              <h3 className="text-2xl font-bold mb-6 text-white flex items-center gap-2">
+                <ShieldCheck className="w-6 h-6 text-red-500" />
+                <span>Keahlian & Kompetensi</span>
+              </h3>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {[
+                  { name: 'Aviation Security Standard SOP', level: '95%' },
+                  { name: 'Floor Operations & Team Leadership', level: '90%' },
+                  { name: 'Customer Relationship & Service', level: '92%' },
+                  { name: 'Inventory & Stock Management', level: '88%' },
+                  { name: 'Crisis & Conflict Resolution', level: '85%' },
+                  { name: 'Access Control & Screening', level: '94%' },
+                ].map((skill, index) => (
+                  <div key={index} className="bg-[#22070a] border border-red-900/40 p-4 rounded-xl space-y-2">
+                    <div className="flex justify-between text-xs font-semibold">
+                      <span className="text-gray-200">{skill.name}</span>
+                      <span className="text-red-400">{skill.level}</span>
+                    </div>
+                    <div className="w-full h-2 bg-red-950 rounded-full overflow-hidden border border-red-900/30">
+                      <div 
+                        className="h-full bg-gradient-to-r from-red-700 to-red-500 rounded-full"
+                        style={{ width: skill.level }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {activeTab === 'contact' && (
+          <div className="space-y-6 animate-fadeIn">
+            <div className="bg-[#180507] border border-red-600/30 rounded-3xl p-6 md:p-8 shadow-xl">
+              <h3 className="text-2xl font-bold mb-2 text-white flex items-center gap-2">
+                <Mail className="w-6 h-6 text-red-500" />
+                <span>Hubungi Saya</span>
+              </h3>
+              <p className="text-xs text-gray-400 mb-6">Kirimkan pesan langsung untuk tawaran pekerjaan atau kolaborasi.</p>
+
+              <form onSubmit={triggerHireMeConfetti} className="space-y-4">
+                <div>
+                  <label className="block text-xs font-medium text-gray-300 mb-1">Nama Lengkap</label>
+                  <input 
+                    type="text" 
+                    required 
+                    placeholder="Masukkan nama Anda"
+                    className="w-full px-4 py-3 bg-[#22070a] border border-red-900/40 rounded-xl text-xs text-white focus:outline-none focus:border-red-500"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-medium text-gray-300 mb-1">Email / Kontak</label>
+                  <input 
+                    type="email" 
+                    required 
+                    placeholder="nama@email.com"
+                    className="w-full px-4 py-3 bg-[#22070a] border border-red-900/40 rounded-xl text-xs text-white focus:outline-none focus:border-red-500"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-medium text-gray-300 mb-1">Pesan</label>
+                  <textarea 
+                    rows="4" 
+                    required 
+                    placeholder="Tuliskan tawaran atau pertanyaan Anda..."
+                    className="w-full px-4 py-3 bg-[#22070a] border border-red-900/40 rounded-xl text-xs text-white focus:outline-none focus:border-red-500 resize-none"
+                  />
+                </div>
+                <button 
+                  type="submit"
+                  className="w-full py-3 bg-gradient-to-r from-red-600 to-red-800 hover:from-red-500 hover:to-red-700 text-white font-bold text-xs rounded-xl shadow-lg shadow-red-900/50 transition-all flex items-center justify-center gap-2"
+                >
+                  <Send className="w-4 h-4" />
+                  <span>Kirim Pesan Sekarang</span>
+                </button>
+              </form>
+            </div>
+          </div>
+        )}
+
+      </div>
+
+      {/* Floating Controls */}
+      <div className="fixed right-6 bottom-24 z-30 flex flex-col items-center gap-3">
+        <button 
+          onClick={handleLike}
+          className={`p-3.5 rounded-full border shadow-xl transition-all duration-300 flex items-center justify-center ${
+            hasLiked 
+              ? 'bg-red-600 border-red-400 text-white scale-110 shadow-red-600/50' 
+              : 'bg-[#1a0507]/90 border-red-900/50 text-red-400 hover:scale-105'
+          }`}
+        >
+          <Heart className={`w-5 h-5 ${hasLiked ? 'fill-white' : ''}`} />
+        </button>
+        <span className="text-[10px] font-bold text-gray-300 bg-black/60 px-2 py-0.5 rounded-full backdrop-blur-md">
+          {(likes / 1000).toFixed(1)}k
+        </span>
+      </div>
+
+      {/* Modal Contact Form Pop-up */}
+      {showContactModal && (
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+          <div className="relative bg-[#180507] border border-red-600/40 max-w-md w-full rounded-3xl p-6 shadow-2xl space-y-4">
+            <button 
+              onClick={() => setShowContactModal(false)}
+              className="absolute top-4 right-4 p-2 bg-red-950 text-gray-300 hover:text-white rounded-full border border-red-800/40"
+            >
+              <X className="w-4 h-4" />
+            </button>
+            <h3 className="text-lg font-bold text-white flex items-center gap-2">
+              <Mail className="w-5 h-5 text-red-500" />
+              <span>Kirim Pesan Langsung</span>
+            </h3>
+            <form onSubmit={handleSendWhatsApp} className="space-y-3">
+              <div>
+                <label className="block text-[11px] text-gray-400 mb-1">Nama Lengkap</label>
+                <input 
+                  type="text" 
+                  required 
+                  placeholder="Masukkan nama Anda"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  className="w-full px-4 py-2.5 bg-[#22070a] border border-red-900/40 rounded-xl text-xs text-white focus:outline-none focus:border-red-500 transition-colors"
+                />
+              </div>
+
+              <div>
+                <label className="block text-[11px] text-gray-400 mb-1">Email / No WhatsApp</label>
+                <input 
+                  type="text" 
+                  required 
+                  placeholder="nama@email.com / 0812xxx"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  className="w-full px-4 py-2.5 bg-[#22070a] border border-red-900/40 rounded-xl text-xs text-white focus:outline-none focus:border-red-500 transition-colors"
+                />
+              </div>
+
+              <div>
+                <label className="block text-[11px] text-gray-400 mb-1">Pesan</label>
+                <textarea 
+                  rows="3" 
+                  required 
+                  placeholder="Tuliskan tawaran pekerjaan atau pertanyaan Anda..."
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  className="w-full px-4 py-2.5 bg-[#22070a] border border-red-900/40 rounded-xl text-xs text-white focus:outline-none focus:border-red-500 resize-none transition-colors"
+                />
+              </div>
+
+              <button 
+                type="submit"
+                className="w-full py-3 bg-gradient-to-r from-red-600 to-red-800 hover:from-red-500 hover:to-red-700 text-white font-bold text-xs rounded-xl shadow-lg shadow-red-900/50 transition-all flex items-center justify-center gap-2 mt-2"
+              >
+                <Send className="w-4 h-4" />
+                <span>Kirim Pesan ke WhatsApp</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Modal Image Viewer */}
+      {selectedImage && (
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+          <div className="relative bg-[#180507] border border-red-600/40 max-w-2xl w-full rounded-3xl overflow-hidden shadow-2xl space-y-4 p-6">
+            <button 
+              onClick={() => setSelectedImage(null)}
+              className="absolute top-4 right-4 p-2 bg-red-950 text-gray-300 hover:text-white rounded-full border border-red-800/40"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div className="rounded-2xl overflow-hidden max-h-80 bg-black flex items-center justify-center border border-red-900/30">
+              <img src={selectedImage.image} alt={selectedImage.title} className="w-full h-full object-contain" />
+            </div>
+
+            <div className="space-y-2">
+              <span className="px-3 py-1 bg-red-950 border border-red-700/40 text-red-300 text-[10px] rounded-full font-semibold">
+                {selectedImage.category}
+              </span>
+              <h3 className="text-lg font-bold text-white">{selectedImage.title}</h3>
+              <p className="text-xs text-gray-300 leading-relaxed">{selectedImage.description}</p>
+              <p className="text-[11px] text-red-400 pt-2 border-t border-red-900/30">Instansi / Penerbit: {selectedImage.issuer} ({selectedImage.year})</p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Bottom Navigation Bar */}
+      <nav className="fixed bottom-4 left-1/2 -translate-x-1/2 z-40 bg-[#180507]/90 backdrop-blur-xl border border-red-600/40 rounded-full px-4 py-2.5 shadow-2xl shadow-red-950/80 flex items-center gap-2 md:gap-4">
+        {[
+          { id: 'home', label: 'Home', icon: User },
+          { id: 'experience', label: 'Karir', icon: Briefcase },
+          { id: 'gallery', label: 'Sertifikat', icon: ImageIcon },
+          { id: 'skills', label: 'Skills', icon: ShieldCheck },
+          { id: 'contact', label: 'Kontak', icon: Mail },
+        ].map((tab) => {
+          const Icon = tab.icon;
+          const isActive = activeTab === tab.id;
+          return (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`relative flex items-center gap-2 px-3.5 py-2 rounded-full text-xs font-semibold transition-all duration-300 ${
+                isActive 
+                  ? 'bg-gradient-to-r from-red-600 to-red-800 text-white shadow-lg shadow-red-600/40 scale-105' 
+                  : 'text-gray-400 hover:text-red-300 hover:bg-red-950/40'
+              }`}
+            >
+              <Icon className="w-4 h-4" />
+              <span className="hidden sm:inline">{tab.label}</span>
+            </button>
+          );
+        })}
+      </nav>
+      {/* Custom 3D Rotating Mouse Cursor Pointer */}
+      <div 
+        style={{
+          left: `${(mousePos.x / 35 + 0.5) * 100}%`,
+          top: `${(mousePos.y / 35 + 0.5) * 100}%`,
+          transform: `translate(-50%, -50%) perspective(500px) rotateX(${mousePos.y * 1.5}deg) rotateY(${-mousePos.x * 1.5}deg) rotateZ(${mousePos.x * 2}deg)`,
+          transformStyle: 'preserve-3d',
+        }}
+        className="fixed w-10 h-10 border-2 border-red-500/80 rounded-xl pointer-events-none z-50 transition-transform duration-75 ease-out shadow-[0_0_15px_rgba(255,45,85,0.6)] flex items-center justify-center bg-red-950/20 backdrop-blur-[2px]"
+      >
+        <div className="w-2 h-2 bg-red-400 rounded-full shadow-[0_0_8px_#ff2d55]" />
+      </div>
+    </div>
+  );
+}
