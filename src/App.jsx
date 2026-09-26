@@ -95,7 +95,7 @@ export default function App() {
         particleCount: 50,
         spread: 60,
         origin: { y: 0.8 },
-        colors: ['#ff2d55', '#e60033', '#990022']
+        colors: ['#6200ff', '#6304fb', '#470284']
       });
     } else {
       setLikes(prev => prev - 1);
@@ -121,7 +121,7 @@ export default function App() {
       particleCount: 100,
       spread: 70,
       origin: { y: 0.6 },
-      colors: ['#ff2d55', '#ffffff', '#ff6b81']
+      colors: ['#9d2dff', '#ffffff', '#ba6bff']
     });
 
     window.open(waUrl, '_blank');
@@ -196,7 +196,7 @@ export default function App() {
                   </h2>
 
                   <p className="text-gray-300 text-sm leading-relaxed">
-                    Saya <strong className="text-white">Bani Marvel Octavianus Gulo</strong>, berusia 19 tahun. Berpengalaman di bidang <span className="text-red-400 font-medium">Aviation Security (AVSEC)</span> di Bandara Soekarno-Hatta (2022) serta posisi <span className="text-red-400 font-medium">Floor Manager</span> di Richeese Factory (2024 - 2026). Berkomitmen tinggi pada kedisiplinan, keselamatan operasional, dan kepemimpinan tim.
+                    Saya <strong className="text-white">Bani Marvel Octavianus Gulo</strong>, berusia 19 tahun. Berpengalaman di bidang <span className="text-purple-400 font-medium">Senior Full-Stack Developer</span> PT TechNova Digital Indonesia (2024 - sekarang)
                   </p>
 
                   <div className="pt-2 flex flex-wrap gap-4 border-t border-red-900/30">
