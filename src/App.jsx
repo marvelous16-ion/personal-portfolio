@@ -202,7 +202,7 @@ export default function App() {
                   <div className="pt-2 flex flex-wrap gap-4 border-t border-red-900/30">
                     <div className="flex items-center gap-2 text-xs text-gray-400">
                       <MapPin className="w-4 h-4 text-red-500" />
-                      <span>Soekarno-Hatta / Bekasi </span>
+                      <span>Bekasi & Jakarta </span>
                     </div>
                     <div className="flex items-center gap-2 text-xs text-gray-400">
                       <User className="w-4 h-4 text-red-500" />
