@@ -362,7 +362,7 @@ export default function App() {
                   </div>
 
                   <p className="text-xs text-gray-300 leading-relaxed pt-1">
-                    Fokus pada kedisiplinan, pelatihan dasar, kepatuhan prosedur keselamatan, serta pengembangan komunikasi publik.
+                    Fokus pada pengembangan perangkat lunak dan teknologi informasi.
                   </p>
                 </div>
               </div>
@@ -380,82 +380,8 @@ export default function App() {
 
               <div className="space-y-6 relative before:absolute before:inset-0 before:left-3.5 before:w-0.5 before:bg-gradient-to-b before:from-purple-500 before:via-purple-800 before:to-transparent">
                 
-                {/* Richeese Factory */}
-                <div className="relative pl-8 group">
-                  <div className="absolute left-0 top-1.5 w-7 h-7 rounded-full bg-[#0d0203] border-2 border-purple-500 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <div className="w-2.5 h-2.5 rounded-full bg-purple-500" />
-                  </div>
-                  <div className="bg-[#22070a] border border-purple-900/40 p-5 rounded-2xl hover:border-purple-500/50 transition-colors">
-                    <div className="flex justify-between items-start flex-wrap gap-2 mb-2">
-                      <div>
-                        <h4 className="text-lg font-bold text-white">Floor Manager</h4>
-                        <p className="text-xs text-purple-400 font-medium">Richeese Factory</p>
-                      </div>
-                      <span className="px-3 py-1 bg-purple-950 border border-purple-800/50 rounded-full text-xs text-purple-300 font-medium">
-                        20 Oktober 2025 - 31 juli 2026
-                      </span>
-                    </div>
-                    <ul className="text-xs text-gray-300 space-y-2 list-disc list-inside mt-3">
-                      <li>Mengawasi alur operasional harian outlet dan kualitas pelayanan pelanggan.</li>
-                      <li>Memimpin tim operasional floor, efisiensi persediaan stok, serta standar kebersihan.</li>
-                      <li>Mengelola penanganan komplain pelanggan secara proaktif dengan tingkat kepuasan tinggi.</li>
-                      <li>Mengelola perhitungan stock opname dan pelakukan penginputan.</li>
-                      <li>Mengelola cost and lost pada oprasional.</li>
-                      <li>Melakukan laporan pnl,cmo,so asset dan pattycast.</li>
-                    </ul>
-                  </div>
-                </div>
 
-                {/* Richeese Factory */}
-                <div className="relative pl-8 group">
-                  <div className="absolute left-0 top-1.5 w-7 h-7 rounded-full bg-[#0d0203] border-2 border-purple-500 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <div className="w-2.5 h-2.5 rounded-full bg-purple-500" />
-                  </div>
-                  <div className="bg-[#22070a] border border-purple-900/40 p-5 rounded-2xl hover:border-purple-500/50 transition-colors">
-                    <div className="flex justify-between items-start flex-wrap gap-2 mb-2">
-                      <div>
-                        <h4 className="text-lg font-bold text-white">Leader</h4>
-                        <p className="text-xs text-purple-400 font-medium">Richeese Factory</p>
-                      </div>
-                      <span className="px-3 py-1 bg-purple-950 border border-purple-800/50 rounded-full text-xs text-purple-300 font-medium">
-                        2025 - 20 Oktober 2025
-                      </span>
-                    </div>
-                    <ul className="text-xs text-gray-300 space-y-2 list-disc list-inside mt-3">
-                      <li>Mengawasi alur operasional harian outlet dan kualitas pelayanan pelanggan.</li>
-                      <li>Memimpin tim operasional floor, efisiensi persediaan stok, serta standar kebersihan.</li>
-                      <li>Mengelola penanganan komplain pelanggan secara proaktif dengan tingkat kepuasan tinggi.</li>
-                    </ul>
-                  </div>
-                </div>
-
-                {/* Richeese Factory */}
-                <div className="relative pl-8 group">
-                  <div className="absolute left-0 top-1.5 w-7 h-7 rounded-full bg-[#0d0203] border-2 border-purple-500 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <div className="w-2.5 h-2.5 rounded-full bg-purple-500" />
-                  </div>
-                  <div className="bg-[#22070a] border border-purple-900/40 p-5 rounded-2xl hover:border-purple-500/50 transition-colors">
-                    <div className="flex justify-between items-start flex-wrap gap-2 mb-2">
-                      <div>
-                        <h4 className="text-lg font-bold text-white">Crew (stock keeper,Kitchen,Cashier dan lobby)</h4>
-                        <p className="text-xs text-purple-400 font-medium">Richeese Factory</p>
-                      </div>
-                      <span className="px-3 py-1 bg-purple-950 border border-purple-800/50 rounded-full text-xs text-purple -300 font-medium">
-                        2024 - 2025
-                      </span>
-                    </div>
-                    <ul className="text-xs text-gray-300 space-y-2 list-disc list-inside mt-3">
-                      <li>Memastikan alur in out barang berjalan dengan sesuai sop yang berlaku.</li>
-                      <li>Melakukan stock opname harian & mingguan.</li>
-                      <li>Mengelola dan memastikan ketersedian barang dan melapor barang yang perlu diorder.</li>
-                      <li>Melakukan tugas kitchen dan memastikan product yang di olah sesuai dengan work intruction.</li>
-                      <li>Melakukan tugas cashier sesuai dengan sop dan sugest selling bertujuan untuk menaikan sales.</li>
-                      <li>Memastikan seluruh lobby resto bersih dari bekas makanan dan memastikan customer nyaman.</li>
-                    </ul>
-                  </div>
-                </div>
-
-                {/* Aviation Security */}
+                {/* Senior Fullstack Developer */}
                 <div className="relative pl-8 group">
                   <div className="absolute left-0 top-1.5 w-7 h-7 rounded-full bg-[#0d0203] border-2 border-purple-800 flex items-center justify-center group-hover:scale-110 transition-transform">
                     <div className="w-2.5 h-2.5 rounded-full bg-purple-800" />
@@ -463,17 +389,17 @@ export default function App() {
                   <div className="bg-[#22070a] border border-purple-900/40 p-5 rounded-2xl hover:border-purple-500/50 transition-colors">
                     <div className="flex justify-between items-start flex-wrap gap-2 mb-2">
                       <div>
-                        <h4 className="text-lg font-bold text-white">Aviation Security (AVSEC)</h4>
-                        <p className="text-xs text-purple-400 font-medium">Bandara Internasional Soekarno-Hatta</p>
+                        <h4 className="text-lg font-bold text-white">Senior Fullstack Developer</h4>
+                        <p className="text-xs text-purple-400 font-medium">Pt TechNova Digital Indonesia</p>
                       </div>
                       <span className="px-3 py-1 bg-purple-950 border border-purple-800/50 rounded-full text-xs text-purple-300 font-medium">
-                        2022
+                        2024
                       </span>
                     </div>
                     <ul className="text-xs text-gray-300 space-y-2 list-disc list-inside mt-3">
-                      <li>Bertanggung jawab atas prosedur keamanan pemeriksaan barang & penumpang penerbangan.</li>
-                      <li>Memastikan kepatuhan ketat terhadap regulasi keselamatan penerbangan sipil.</li>
-                      <li>Menangani situasi darurat serta kontrol akses pintu keamanan area terbatas terminal.</li>
+                      <li>Memimpin pengembangan arsitektur front-end dan back-end untuk platform e-commerce berintegrasi tinggi.</li>
+                      <li>Mengoptimalkan struktur basis data (PostgreSQL) dan strategi caching (Redis) untuk menangani hingga 50.000 pengguna aktif bulanan.</li>
+                      <li>Mengintegrasikan sistem pembayaran (payment gateway) lokal dan internasional.</li>
                     </ul>
                   </div>
                 </div>
