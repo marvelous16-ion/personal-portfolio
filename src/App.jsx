@@ -107,9 +107,9 @@ export default function App() {
     e.preventDefault();
     
     // MASUKKAN NOMOR WHATSAPP ANDA DI SINI (Ganti dengan nomor asli Anda)
-    const phoneNumber = "6282123968224"; 
+    const phoneNumber = "6289517848065"; 
     
-    const text = `Halo Agung Frakoso, ada pesan baru dari Portofolio Web:\n\n` +
+    const text = `Halo Bani Marvel Octavianus Gulo, ada pesan baru dari Portofolio Web:\n\n` +
                  `*Nama:* ${formData.name}\n` +
                  `*Email/Kontak:* ${formData.email}\n` +
                  `*Pesan:* ${formData.message}`;
@@ -147,15 +147,15 @@ export default function App() {
           <div className="flex items-center gap-3">
             <div className="relative">
               <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-red-800 to-red-500 flex items-center justify-center font-bold text-lg shadow-md border border-red-400/30">
-                AF
+                BM
               </div>
               <span className="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 rounded-full border-2 border-[#0d0203]" />
             </div>
             <div>
-              <h1 className="text-sm font-semibold text-gray-200">@agungfrakoso</h1>
+              <h1 className="text-sm font-semibold text-gray-200">@banimarvel</h1>
               <div className="flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span className="text-xs text-emerald-400 font-medium">Floor Mgr & AVSEC | Jakarta & Tangerang</span>
+                <span className="text-xs text-emerald-400 font-medium">Floor Mgr & AVSEC | Jakarta & Bekasi</span>
               </div>
             </div>
           </div>
@@ -196,17 +196,17 @@ export default function App() {
                   </h2>
 
                   <p className="text-gray-300 text-sm leading-relaxed">
-                    Saya <strong className="text-white">Agung Frakoso</strong>, berusia 23 tahun. Berpengalaman di bidang <span className="text-red-400 font-medium">Aviation Security (AVSEC)</span> di Bandara Soekarno-Hatta (2022) serta posisi <span className="text-red-400 font-medium">Floor Manager</span> di Richeese Factory (2024 - 2026). Berkomitmen tinggi pada kedisiplinan, keselamatan operasional, dan kepemimpinan tim.
+                    Saya <strong className="text-white">Bani Marvel Octavianus Gulo</strong>, berusia 19 tahun. Berpengalaman di bidang <span className="text-red-400 font-medium">Aviation Security (AVSEC)</span> di Bandara Soekarno-Hatta (2022) serta posisi <span className="text-red-400 font-medium">Floor Manager</span> di Richeese Factory (2024 - 2026). Berkomitmen tinggi pada kedisiplinan, keselamatan operasional, dan kepemimpinan tim.
                   </p>
 
                   <div className="pt-2 flex flex-wrap gap-4 border-t border-red-900/30">
                     <div className="flex items-center gap-2 text-xs text-gray-400">
                       <MapPin className="w-4 h-4 text-red-500" />
-                      <span>Soekarno-Hatta / Tangerang & Bangka Belitung </span>
+                      <span>Soekarno-Hatta / Bekasi </span>
                     </div>
                     <div className="flex items-center gap-2 text-xs text-gray-400">
                       <User className="w-4 h-4 text-red-500" />
-                      <span>23 Tahun</span>
+                      <span>19 Tahun</span>
                     </div>
                   </div>
                 </div>
@@ -217,14 +217,14 @@ export default function App() {
                     <div className="w-full h-36 rounded-xl bg-gradient-to-t from-red-950 to-red-800 flex items-center justify-center relative overflow-hidden border border-red-500/30 shadow-inner">
                       <img 
                         src="/profil.jpeg" 
-                        alt="Agung Frakoso" 
+                        alt="Bani Marvel Octavianus Gulo" 
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" 
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#0d0203] via-transparent to-transparent opacity-40" />
                     </div>
 
                     <div className="text-center w-full py-1">
-                      <p className="text-xs font-bold text-white tracking-wide">AGUNG FRAKOSO</p>
+                      <p className="text-xs font-bold text-white tracking-wide">BANI MARVEL OCTAVIANUS GULO</p>
                       <p className="text-[10px] text-red-400 font-medium">Certified AVSEC & Floor Mgr</p>
                     </div>
                   </div>
@@ -274,22 +274,22 @@ export default function App() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="bg-[#22070a] border border-red-900/40 p-4 rounded-xl">
                     <p className="text-[10px] text-red-400 font-mono">Nama Lengkap</p>
-                    <p className="text-sm font-bold text-white mt-1">Agung Frakoso</p>
+                    <p className="text-sm font-bold text-white mt-1">Bani Marvel Octavianus Gulo</p>
                   </div>
 
                   <div className="bg-[#22070a] border border-red-900/40 p-4 rounded-xl">
                     <p className="text-[10px] text-red-400 font-mono">Usia</p>
-                    <p className="text-sm font-bold text-white mt-1">23 Tahun</p>
+                    <p className="text-sm font-bold text-white mt-1">19 Tahun</p>
                   </div>
 
                   <div className="bg-[#22070a] border border-red-900/40 p-4 rounded-xl">
                     <p className="text-[10px] text-red-400 font-mono">Pendidikan Terakhir</p>
-                    <p className="text-sm font-bold text-white mt-1">SMA / SMK / Sederajat, Pendidikan staff penerbangan & pramugari</p>
+                    <p className="text-sm font-bold text-white mt-1">SMA / SMK / Sederajat, Widya Nusantara</p>
                   </div>
 
                   <div className="bg-[#22070a] border border-red-900/40 p-4 rounded-xl">
                     <p className="text-[10px] text-red-400 font-mono">Lokasi Operasional</p>
-                    <p className="text-sm font-bold text-white mt-1">Soekarno-Hatta / Tangerang & Jakarta, Bangka belitung</p>
+                    <p className="text-sm font-bold text-white mt-1">Soekarno-Hatta / Bekasi & Jakarta</p>
                   </div>
 
                   <div className="bg-[#22070a] border border-red-900/40 p-4 rounded-xl">
@@ -299,7 +299,7 @@ export default function App() {
 
                   <div className="bg-[#22070a] border border-red-900/40 p-4 rounded-xl">
                     <p className="text-[10px] text-red-400 font-mono">Fokus Keahlian</p>
-                    <p className="text-sm font-bold text-white mt-1">Avsec | Floor Manager | Frond end dev</p>
+                    <p className="text-sm font-bold text-white mt-1">Avsec | Floor Manager | Full stack dev</p>
                   </div>
                 </div>
 
@@ -332,7 +332,7 @@ export default function App() {
 
                   <div className="flex justify-between items-start flex-wrap gap-2 pt-2 border-t border-red-900/30">
                     <div>
-                      <h4 className="text-sm font-bold text-white">Pendidikan staff penerbangan & pramugari</h4>
+                      <h4 className="text-sm font-bold text-white">Pendidikan  </h4>
                       <p className="text-xs text-gray-400 mt-0.5">Lulus dengan Predikat Baik & Memiliki Sertifikasi Pelatihan Operasional</p>
                     </div>
                     <span className="px-3 py-1 bg-red-950 border border-red-800/50 rounded-full text-[11px] text-red-300 font-medium">
@@ -353,7 +353,7 @@ export default function App() {
 
                   <div className="flex justify-between items-start flex-wrap gap-2 pt-2 border-t border-red-900/30">
                     <div>
-                      <h4 className="text-sm font-bold text-white">SMK N1 TANJUNG PANDAN RPL</h4>
+                      <h4 className="text-sm font-bold text-white">SMA Widya Nusantara Bekasi</h4>
                       <p className="text-xs text-gray-400 mt-0.5">Lulus dengan Predikat Baik & Memiliki Sertifikasi Pelatihan</p>
                     </div>
                     <span className="px-3 py-1 bg-red-950 border border-red-800/50 rounded-full text-[11px] text-red-300 font-medium">
