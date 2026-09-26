@@ -289,7 +289,7 @@ export default function App() {
 
                   <div className="bg-[#22070a] border border-purple-900/40 p-4 rounded-xl">
                     <p className="text-[10px] text-purple-400 font-mono">Lokasi Operasional</p>
-                    <p className="text-sm font-bold text-white mt-1">Soekarno-Hatta / Bekasi & Jakarta</p>
+                    <p className="text-sm font-bold text-white mt-1">Bekasi & Jakarta</p>
                   </div>
 
                   <div className="bg-[#22070a] border border-purple-900/40 p-4 rounded-xl">
@@ -299,7 +299,7 @@ export default function App() {
 
                   <div className="bg-[#22070a] border border-purple-900/40 p-4 rounded-xl">
                     <p className="text-[10px] text-purple-400 font-mono">Fokus Keahlian</p>
-                    <p className="text-sm font-bold text-white mt-1">Avsec | Floor Manager | Full stack dev</p>
+                    <p className="text-sm font-bold text-white mt-1">Full stack dev</p>
                   </div>
                 </div>
 
