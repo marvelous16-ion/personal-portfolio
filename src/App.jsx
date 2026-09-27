@@ -55,7 +55,7 @@ export default function App() {
       category: 'Dokumentasi Kerja (Soekarno-Hatta)',
       year: '2022',
       issuer: 'Bandara Soekarno-Hatta',
-      image: 'https://images.unsplash.com/photo-1542296332-2e4473faf563?auto=format&fit=crop&w=800&q=80',
+      image: 'https://images.unsplash.com/photo-1695668548342-c0c1ad479aee?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
       description: 'Kegiatan Pemantauan Rutin Server.'
     },
   ];
