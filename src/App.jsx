@@ -1,5 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { User, Briefcase, Award, Mail, Phone, MapPin, ChevronRight, ExternalLink, ShieldCheck, Users, Sparkles, Heart, MessageSquare, Send, CheckCircle2, FileCheck, Image as ImageIcon, Eye, X, Download, GraduationCap } from 'lucide-react';
+import { 
+  User, 
+  Briefcase, 
+  Award, 
+  Mail, 
+  MapPin, 
+  ChevronRight, 
+  ShieldCheck, 
+  Sparkles, 
+  Heart, 
+  Send, 
+  Eye, 
+  X, 
+  GraduationCap 
+} from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 export default function App() {
@@ -41,14 +55,13 @@ export default function App() {
       category: 'Dokumentasi Kerja (Soekarno-Hatta)',
       year: '2022',
       issuer: 'Bandara Soekarno-Hatta',
-      image: 'https://share.google.com/get/KHxNQ9LNymww3MJAKhttps://images.unsplash.com/photo-1542296332-2e4473faf563?auto=format&fit=crop&w=800&q=80',
+      image: 'https://images.unsplash.com/photo-1542296332-2e4473faf563?auto=format&fit=crop&w=800&q=80',
       description: 'Kegiatan Pemantauan Rutin Server.'
     },
   ];
 
   // Perhitungan Pergerakan Mouse 3D Tilt
   const handleMouseMove = (e) => {
-    // Ambil posisi dari event mouse atau event touch jari di HP
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
     const clientY = e.touches ? e.touches[0].clientY : e.clientY;
     
@@ -57,7 +70,7 @@ export default function App() {
     const y = ((clientY / innerHeight) - 0.5) * 35;
     setMousePos({ x, y });
   };
- 
+
   // Perhitungan Efek 3D Otomatis saat Halaman di-Scroll
   useEffect(() => {
     const handleScroll = () => {
@@ -96,7 +109,6 @@ export default function App() {
   const handleSendWhatsApp = (e) => {
     e.preventDefault();
     
-    // MASUKKAN NOMOR WHATSAPP ANDA DI SINI (Ganti dengan nomor asli Anda)
     const phoneNumber = "6289517848065"; 
     
     const text = `Halo Bani Marvel Octavianus Gulo, ada pesan baru dari Portofolio Web:\n\n` +
@@ -163,7 +175,7 @@ export default function App() {
         {activeTab === 'home' && (
           <div className="space-y-6 animate-fadeIn">
             
-            {/* About Me Main Card dengan Efek 3D Tilt Responsif */}
+            {/* About Me Main Card */}
             <div 
               style={{
                 transform: `perspective(1200px) rotateX(${-mousePos.y * 0.4}deg) rotateY(${mousePos.x * 0.4}deg)`,
@@ -186,13 +198,13 @@ export default function App() {
                   </h2>
 
                   <p className="text-gray-300 text-sm leading-relaxed">
-                    Saya <strong className="text-white">Bani Marvel Octavianus Gulo</strong>, berusia 19 tahun. Berpengalaman di bidang <span className="text-purple-400 font-medium">Senior Full-Stack Developer</span> PT TechNova Digital Indonesia (2024 - sekarang)
+                    Saya <strong className="text-white">Bani Marvel Octavianus Gulo</strong>, berusia 19 tahun. Berpengalaman di bidang <span className="text-purple-400 font-medium">Senior Full-Stack Developer</span> PT TechNova Digital Indonesia (2024 - sekarang).
                   </p>
 
                   <div className="pt-2 flex flex-wrap gap-4 border-t border-red-900/30">
                     <div className="flex items-center gap-2 text-xs text-gray-400">
                       <MapPin className="w-4 h-4 text-red-500" />
-                      <span>Bekasi & Jakarta </span>
+                      <span>Bekasi & Jakarta</span>
                     </div>
                     <div className="flex items-center gap-2 text-xs text-gray-400">
                       <User className="w-4 h-4 text-red-500" />
@@ -274,7 +286,7 @@ export default function App() {
 
                   <div className="bg-[#22070a] border border-purple-900/40 p-4 rounded-xl">
                     <p className="text-[10px] text-purple-400 font-mono">Pendidikan Terakhir</p>
-                    <p className="text-sm font-bold text-white mt-1">SMA / SMK / Sederajat, Widya Nusantara</p>
+                    <p className="text-sm font-bold text-white mt-1">SMA Widya Nusantara</p>
                   </div>
 
                   <div className="bg-[#22070a] border border-purple-900/40 p-4 rounded-xl">
@@ -301,44 +313,23 @@ export default function App() {
 
                   <div className="flex justify-between items-start flex-wrap gap-2 pt-2 border-t border-purple-900/30">
                     <div>
-                      <h4 className="text-sm font-bold text-white">UNIVERSITAS GUNADARMA (S1) Sistem informasi</h4>
-                      <p className="text-xs text-gray-400 mt-0.5">Masih melanjutkan study</p>
+                      <h4 className="text-sm font-bold text-white">UNIVERSITAS GUNADARMA (S1) Sistem Informasi</h4>
+                      <p className="text-xs text-gray-400 mt-0.5">Masih melanjutkan studi</p>
                     </div>
                     <span className="px-3 py-1 bg-purple-950 border border-purple-800/50 rounded-full text-[11px] text-purple-300 font-medium">
-                      Status: Soon
+                      Status: Aktif
                     </span>
                   </div>
 
                   <p className="text-xs text-gray-300 leading-relaxed pt-1">
-                    Fokus pada kedisiplinan, pelatihan berdasarkan kompetensi program study, serta pengembangan komunikasi publik.
+                    Fokus pada kedisiplinan, pelatihan berdasarkan kompetensi program studi, serta pengembangan komunikasi publik.
                   </p>
                 </div>
 
                 <div className="bg-[#22070a] border border-purple-900/50 p-5 rounded-2xl space-y-3">
                   <div className="flex items-center gap-2 text-purple-400 font-bold text-sm">
                     <GraduationCap className="w-5 h-5 text-purple-500" />
-                    <span>Latar Belakang Pendidikan</span>
-                  </div>
-
-                  <div className="flex justify-between items-start flex-wrap gap-2 pt-2 border-t border-purple-900/30">
-                    <div>
-                      <h4 className="text-sm font-bold text-white">Pendidikan  </h4>
-                      <p className="text-xs text-gray-400 mt-0.5">Lulus dengan Predikat Baik & Memiliki Sertifikasi Pelatihan Operasional</p>
-                    </div>
-                    <span className="px-3 py-1 bg-purple-950 border border-purple-800/50 rounded-full text-[11px] text-purple-300 font-medium">
-                      Status: Lulus
-                    </span>
-                  </div>
-
-                  <p className="text-xs text-gray-300 leading-relaxed pt-1">
-                    Fokus pada kedisiplinan, pelatihan dasar, kepatuhan prosedur keselamatan, serta pengembangan komunikasi publik.
-                  </p>
-                </div>
-
-               <div className="bg-[#22070a] border border-purple-900/50 p-5 rounded-2xl space-y-3">
-                  <div className="flex items-center gap-2 text-purple-400 font-bold text-sm">
-                    <GraduationCap className="w-5 h-5 text-purple-500" />
-                    <span>Latar Belakang Pendidikan</span>
+                    <span>Latar Belakang Pendidikan Menengah</span>
                   </div>
 
                   <div className="flex justify-between items-start flex-wrap gap-2 pt-2 border-t border-purple-900/30">
@@ -369,9 +360,6 @@ export default function App() {
               </h3>
 
               <div className="space-y-6 relative before:absolute before:inset-0 before:left-3.5 before:w-0.5 before:bg-gradient-to-b before:from-purple-500 before:via-purple-800 before:to-transparent">
-                
-
-                {/* Senior Fullstack Developer */}
                 <div className="relative pl-8 group">
                   <div className="absolute left-0 top-1.5 w-7 h-7 rounded-full bg-[#0d0203] border-2 border-purple-800 flex items-center justify-center group-hover:scale-110 transition-transform">
                     <div className="w-2.5 h-2.5 rounded-full bg-purple-800" />
@@ -380,10 +368,10 @@ export default function App() {
                     <div className="flex justify-between items-start flex-wrap gap-2 mb-2">
                       <div>
                         <h4 className="text-lg font-bold text-white">Senior Fullstack Developer</h4>
-                        <p className="text-xs text-purple-400 font-medium">Pt TechNova Digital Indonesia</p>
+                        <p className="text-xs text-purple-400 font-medium">PT TechNova Digital Indonesia</p>
                       </div>
                       <span className="px-3 py-1 bg-purple-950 border border-purple-800/50 rounded-full text-xs text-purple-300 font-medium">
-                        2024
+                        2024 - Sekarang
                       </span>
                     </div>
                     <ul className="text-xs text-gray-300 space-y-2 list-disc list-inside mt-3">
@@ -393,7 +381,6 @@ export default function App() {
                     </ul>
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
@@ -419,7 +406,6 @@ export default function App() {
                     onClick={() => setSelectedImage(item)}
                     className="group bg-[#22070a] border border-purple-900/40 rounded-2xl overflow-hidden cursor-pointer hover:border-purple-500/60 transition-all duration-300 hover:-translate-y-1 shadow-lg flex flex-col justify-between"
                   >
-                    {/* Wadah Gambar Full View tanpa Terpotong */}
                     <div className="relative w-full h-56 bg-black/60 flex items-center justify-center p-2 border-b border-purple-900/30 overflow-hidden">
                       <img 
                         src={item.image} 
@@ -427,18 +413,15 @@ export default function App() {
                         className="max-w-full max-h-full object-contain rounded-lg group-hover:scale-105 transition-transform duration-500" 
                       />
                       
-                      {/* Badge Kategori */}
                       <span className="absolute top-3 left-3 px-3 py-1 bg-purple-950/90 border border-purple-500/40 rounded-full text-[10px] text-purple-300 font-semibold backdrop-blur-md shadow-md">
                         {item.category}
                       </span>
 
-                      {/* Ikon Preview saat Hover */}
                       <div className="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-purple-600/90 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-lg">
                         <Eye className="w-4 h-4" />
                       </div>
                     </div>
 
-                    {/* Deskripsi Informasi */}
                     <div className="p-4 space-y-2 flex-1 flex flex-col justify-between">
                       <div>
                         <div className="flex justify-between items-baseline gap-2 mb-1">
@@ -470,12 +453,12 @@ export default function App() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {[
-                  { name: 'Aviation Security Standard SOP', level: '95%' },
+                  { name: 'Full-Stack Web Development', level: '95%' },
+                  { name: 'Aviation Security Standard SOP', level: '92%' },
                   { name: 'Floor Operations & Team Leadership', level: '90%' },
                   { name: 'Customer Relationship & Service', level: '92%' },
                   { name: 'Inventory & Stock Management', level: '88%' },
                   { name: 'Crisis & Conflict Resolution', level: '85%' },
-                  { name: 'Access Control & Screening', level: '94%' },
                 ].map((skill, index) => (
                   <div key={index} className="bg-[#22070a] border border-purple-900/40 p-4 rounded-xl space-y-2">
                     <div className="flex justify-between text-xs font-semibold">
@@ -513,7 +496,7 @@ export default function App() {
                     placeholder="Masukkan nama Anda"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3 bg-[#22070a] border border-purple-900/40 rounded-xl text-xs text-white focus:outline-none focus:border-purple-500"
+                    className="w-full px-4 py-3 bg-[#22070a] border border-purple-900/40 rounded-xl text-xs text-white focus:outline-none focus:border-purple-500 transition-colors"
                   />
                 </div>
                 <div>
@@ -524,7 +507,7 @@ export default function App() {
                     placeholder="nama@email.com / 0812xxx"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-3 bg-[#22070a] border border-purple-900/40 rounded-xl text-xs text-white focus:outline-none focus:border-purple-500"
+                    className="w-full px-4 py-3 bg-[#22070a] border border-purple-900/40 rounded-xl text-xs text-white focus:outline-none focus:border-purple-500 transition-colors"
                   />
                 </div>
                 <div>
@@ -535,7 +518,7 @@ export default function App() {
                     placeholder="Tuliskan tawaran atau pertanyaan Anda..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-4 py-3 bg-[#22070a] border border-purple-900/40 rounded-xl text-xs text-white focus:outline-none focus:border-purple-500 resize-none"
+                    className="w-full px-4 py-3 bg-[#22070a] border border-purple-900/40 rounded-xl text-xs text-white focus:outline-none focus:border-purple-500 resize-none transition-colors"
                   />
                 </div>
                 <button 
@@ -552,7 +535,7 @@ export default function App() {
 
       </div>
 
-      {/* Floating Controls */}
+      {/* Floating Likes Control */}
       <div className="fixed right-6 bottom-24 z-30 flex flex-col items-center gap-3">
         <button 
           onClick={handleLike}
@@ -569,10 +552,38 @@ export default function App() {
         </span>
       </div>
 
+      {/* Bottom Navigation Bar */}
+      <nav className="fixed bottom-4 left-1/2 -translate-x-1/2 z-40 bg-[#1a0507]/90 backdrop-blur-md border border-purple-900/50 px-4 py-2 rounded-2xl shadow-2xl flex items-center gap-2 md:gap-6">
+        {[
+          { id: 'home', label: 'Beranda', icon: User },
+          { id: 'experience', label: 'Pengalaman', icon: Briefcase },
+          { id: 'gallery', label: 'Sertifikat', icon: Award },
+          { id: 'skills', label: 'Keahlian', icon: ShieldCheck },
+          { id: 'contact', label: 'Kontak', icon: Mail },
+        ].map((tab) => {
+          const Icon = tab.icon;
+          const isActive = activeTab === tab.id;
+          return (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`flex flex-col items-center gap-1 px-3 py-1.5 rounded-xl transition-all ${
+                isActive 
+                  ? 'bg-purple-900/60 text-purple-300 border border-purple-500/40' 
+                  : 'text-gray-400 hover:text-gray-200'
+              }`}
+            >
+              <Icon className="w-4 h-4" />
+              <span className="text-[10px] font-medium hidden sm:inline">{tab.label}</span>
+            </button>
+          );
+        })}
+      </nav>
+
       {/* Modal Contact Form Pop-up */}
       {showContactModal && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="relative bg-[#180507] border border-purple-600/40 max-w-md w-full rounded-3xl p-6 shadow-2xl space-y-4">
+          <div className="relative bg-[#180507] border border-purple-600/40 max-w-md w-full rounded-3xl p-6 shadow-2xl space-y-4 animate-fadeIn">
             <button 
               onClick={() => setShowContactModal(false)}
               className="absolute top-4 right-4 p-2 bg-purple-950 text-gray-300 hover:text-white rounded-full border border-purple-800/40"
@@ -592,7 +603,7 @@ export default function App() {
                   placeholder="Masukkan nama Anda"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-2.5 bg-[#22070a] border border-purple-900/40 rounded-xl text-xs text-white focus:outline-none focus:border-purple -500 transition-colors"
+                  className="w-full px-4 py-2.5 bg-[#22070a] border border-purple-900/40 rounded-xl text-xs text-white focus:outline-none focus:border-purple-500 transition-colors"
                 />
               </div>
 
@@ -604,7 +615,7 @@ export default function App() {
                   placeholder="nama@email.com / 0812xxx"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-2.5 bg-[#22070a] border border-red-900/40 rounded-xl text-xs text-white focus:outline-none focus:border-red-500 transition-colors"
+                  className="w-full px-4 py-2.5 bg-[#22070a] border border-purple-900/40 rounded-xl text-xs text-white focus:outline-none focus:border-purple-500 transition-colors"
                 />
               </div>
 
@@ -613,19 +624,19 @@ export default function App() {
                 <textarea 
                   rows="3" 
                   required 
-                  placeholder="Tuliskan tawaran pekerjaan atau pertanyaan Anda..."
+                  placeholder="Tuliskan pesan Anda..."
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full px-4 py-2.5 bg-[#22070a] border border-red-900/40 rounded-xl text-xs text-white focus:outline-none focus:border-red-500 resize-none transition-colors"
+                  className="w-full px-4 py-2.5 bg-[#22070a] border border-purple-900/40 rounded-xl text-xs text-white focus:outline-none focus:border-purple-500 resize-none transition-colors"
                 />
               </div>
 
               <button 
                 type="submit"
-                className="w-full py-3 bg-gradient-to-r from-purple-600 to-purple-800 hover:from-purple-500 hover:to-purple-700 text-white font-bold text-xs rounded-xl shadow-lg shadow-purple-900/50 transition-all flex items-center justify-center gap-2 mt-2"
+                className="w-full py-2.5 bg-gradient-to-r from-purple-600 to-purple-800 hover:from-purple-500 hover:to-purple-700 text-white font-bold text-xs rounded-xl shadow-lg shadow-purple-900/50 transition-all flex items-center justify-center gap-2"
               >
-                <Send className="w-4 h-4" />
-                <span>Kirim Pesan ke WhatsApp</span>
+                <Send className="w-3.5 h-3.5" />
+                <span>Kirim via WhatsApp</span>
               </button>
             </form>
           </div>
@@ -634,71 +645,38 @@ export default function App() {
 
       {/* Modal Image Viewer */}
       {selectedImage && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="relative bg-[#180507] border border-purple-600/40 max-w-2xl w-full rounded-3xl overflow-hidden shadow-2xl space-y-4 p-6">
+        <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4">
+          <div className="relative bg-[#180507] border border-purple-600/40 max-w-2xl w-full rounded-3xl p-6 shadow-2xl space-y-4 animate-fadeIn overflow-hidden">
             <button 
               onClick={() => setSelectedImage(null)}
-              className="absolute top-4 right-4 p-2 bg-purple-950 text-gray-300 hover:text-white rounded-full border border-purple-800/40"
+              className="absolute top-4 right-4 z-10 p-2 bg-purple-950 text-gray-300 hover:text-white rounded-full border border-purple-800/40"
             >
-              <X className="w-5 h-5" />
+              <X className="w-4 h-4" />
             </button>
 
-            <div className="rounded-2xl overflow-hidden max-h-80 bg-black flex items-center justify-center border border-purple-900/30">
-              <img src={selectedImage.image} alt={selectedImage.title} className="w-full h-full object-contain" />
+            <div className="w-full h-72 bg-black/80 rounded-xl flex items-center justify-center p-2 overflow-hidden border border-purple-900/30">
+              <img 
+                src={selectedImage.image} 
+                alt={selectedImage.title} 
+                className="max-w-full max-h-full object-contain"
+              />
             </div>
 
             <div className="space-y-2">
-              <span className="px-3 py-1 bg-purple-950 border border-purple-700/40 text-purple-300 text-[10px] rounded-full font-semibold">
-                {selectedImage.category}
-              </span>
+              <div className="flex justify-between items-center">
+                <span className="px-3 py-0.5 bg-purple-950 border border-purple-500/40 rounded-full text-[10px] text-purple-300 font-semibold">
+                  {selectedImage.category}
+                </span>
+                <span className="text-xs text-gray-400 font-mono">{selectedImage.year}</span>
+              </div>
               <h3 className="text-lg font-bold text-white">{selectedImage.title}</h3>
               <p className="text-xs text-gray-300 leading-relaxed">{selectedImage.description}</p>
-              <p className="text-[11px] text-purple-400 pt-2 border-t border-purple-900/30">Instansi / Penerbit: {selectedImage.issuer} ({selectedImage.year})</p>
+              <p className="text-xs text-purple-400 font-medium pt-2">Penerbit: {selectedImage.issuer}</p>
             </div>
           </div>
         </div>
       )}
 
-      {/* Bottom Navigation Bar */}
-      <nav className="fixed bottom-4 left-1/2 -translate-x-1/2 z-40 bg-[#180507]/90 backdrop-blur-xl border border-purple-600/40 rounded-full px-4 py-2.5 shadow-2xl shadow-purple-950/80 flex items-center gap-2 md:gap-4">
-        {[
-          { id: 'home', label: 'Home', icon: User },
-          { id: 'experience', label: 'Karir', icon: Briefcase },
-          { id: 'gallery', label: 'Sertifikat', icon: ImageIcon },
-          { id: 'skills', label: 'Skills', icon: ShieldCheck },
-          { id: 'contact', label: 'Kontak', icon: Mail },
-        ].map((tab) => {
-          const Icon = tab.icon;
-          const isActive = activeTab === tab.id;
-          return (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={`relative flex items-center gap-2 px-3.5 py-2 rounded-full text-xs font-semibold transition-all duration-300 ${
-                isActive 
-                  ? 'bg-gradient-to-r from-red-600 to-red-800 text-white shadow-lg shadow-red-600/40 scale-105' 
-                  : 'text-gray-400 hover:text-red-300 hover:bg-red-950/40'
-              }`}
-            >
-              <Icon className="w-4 h-4" />
-              <span className="hidden sm:inline">{tab.label}</span>
-            </button>
-          );
-        })}
-      </nav>
-
-      {/* Custom 3D Rotating Mouse Cursor Pointer */}
-      <div 
-        style={{
-          left: `${(mousePos.x / 35 + 0.5) * 100}%`,
-          top: `${(mousePos.y / 35 + 0.5) * 100}%`,
-          transform: `translate(-50%, -50%) perspective(500px) rotateX(${mousePos.y * 1.5}deg) rotateY(${-mousePos.x * 1.5}deg) rotateZ(${mousePos.x * 2}deg)`,
-          transformStyle: 'preserve-3d',
-        }}
-        className="hidden md:flex fixed w-10 h-10 border-2 border-purple-500/80 rounded-xl pointer-events-none z-50 transition-transform duration-75 ease-out items-center justify-center shadow-lg shadow-purple-600/30 backdrop-blur-sm"
-      >
-        <div className="w-2 h-2 bg-purple-400 rounded-full shadow-[0_0_8px_#c084fc]" />
-      </div>
     </div>
   );
 }
