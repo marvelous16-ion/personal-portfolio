@@ -17,20 +17,20 @@ export default function App() {
     {
       id: 1,
       type: 'certificate',
-      title: 'Sertifikat Lisensi AVSEC (Aviation Security)',
+      title: 'Sertifikat Senior Fullstack Developer',
       category: 'Sertifikasi Keamanan Penerbangan',
       year: '2022',
-      issuer: 'Direktorat Jenderal Perhubungan Udara',
+      issuer: 'PT TechNova Digital Indonesia',
       image: 'avsec.jpeg',
       description: 'Lisensi resmi personel keamanan penerbangan untuk pemeriksaan penumpang, barang kargo, dan akses area terbatas Bandara.'
     },
     {
       id: 2,
       type: 'certificate',
-      title: 'Sertifikasi Floor Management development program',
-      category: 'Sertifikasi Manajemen Operasional',
+      title: 'Sertifikasi Pelatihan Senior Fullstack Developer',
+      category: 'Sertifikasi Teknologi Informasi',
       year: '2025',
-      issuer: 'HEAD OF HUMAN CAPITAL & LEGAL',
+      issuer: 'PT TechNova Digital Indonesia',
       image: 'fmdp.jpeg',
       description: 'Penghargaan dan kelulusan pelatihan kepemimpinan area, kontrol persediaan barang, serta standar kualitas pelayanan konsumen.'
     },
@@ -41,19 +41,9 @@ export default function App() {
       category: 'Dokumentasi Kerja (Soekarno-Hatta)',
       year: '2022',
       issuer: 'Bandara Soekarno-Hatta',
-      image: 'https://images.unsplash.com/photo-1542296332-2e4473faf563?auto=format&fit=crop&w=800&q=80',
-      description: 'Kegiatan pemantauan rutin akses masuk terminal dan koordinasi keamanan bersama tim AVSEC.'
+      image: 'https://share.google.com/get/KHxNQ9LNymww3MJAKhttps://images.unsplash.com/photo-1542296332-2e4473faf563?auto=format&fit=crop&w=800&q=80',
+      description: 'Kegiatan Pemantauan Rutin Server.'
     },
-    {
-      id: 4,
-      type: 'documentation',
-      title: 'Operasional & Stock keeper',
-      category: 'Dokumentasi Kerja (Richeese Factory)',
-      year: '2024 - 2026',
-      issuer: 'Richeese Factory',
-      image: 'crew.jpeg',
-      description: 'Supervisi tim outlet, briefing harian karyawan, serta memastikan kepuasan pelanggan di area dining room.'
-    }
   ];
 
   // Perhitungan Pergerakan Mouse 3D Tilt
@@ -136,17 +126,17 @@ export default function App() {
       className="min-h-screen bg-[#0d0203] text-white font-sans selection:bg-[#ff2d55] selection:text-white pb-28 pt-6 px-4 md:px-8 relative overflow-hidden"
     >
       {/* Background Ambient Glowing Orbs */}
-      <div className="fixed top-[-10%] left-[-10%] w-[500px] h-[500px] bg-red-900/20 rounded-full blur-[140px] pointer-events-none" />
+      <div className="fixed top-[-10%] left-[-10%] w-[500px] h-[500px] bg-purple-900/20 rounded-full blur-[140px] pointer-events-none" />
       <div className="fixed bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-[#ff2d55]/15 rounded-full blur-[150px] pointer-events-none" />
 
       {/* Main Container */}
       <div className="max-w-4xl mx-auto space-y-6 relative z-10">
         
         {/* Header / Status Bar Top */}
-        <header className="flex justify-between items-center bg-[#1a0507]/80 backdrop-blur-md p-4 rounded-2xl border border-red-900/40 shadow-lg shadow-red-950/50">
+        <header className="flex justify-between items-center bg-[#1a0507]/80 backdrop-blur-md p-4 rounded-2xl border border-purple-900/40 shadow-lg shadow-purple-950/50">
           <div className="flex items-center gap-3">
             <div className="relative">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-red-800 to-red-500 flex items-center justify-center font-bold text-lg shadow-md border border-red-400/30">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-purple-800 to-purple-500 flex items-center justify-center font-bold text-lg shadow-md border border-purple-400/30">
                 BM
               </div>
               <span className="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 rounded-full border-2 border-[#0d0203]" />
