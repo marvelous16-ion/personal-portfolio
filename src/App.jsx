@@ -102,7 +102,7 @@ const styles = {
   container: {
     height: '100vh',
     width: '100vw',
-    backgroundColor: '#121212',
+    backgroundColor: '#7608dc',
     overflow: 'hidden',
     position: 'relative',
     display: 'flex',
@@ -111,19 +111,19 @@ const styles = {
     cursor: 'crosshair',
   },
   text: {
-    color: '#ffffff',
+    color: '#4a0693',
     fontFamily: 'sans-serif',
     userSelect: 'none',
   },
   box: {
     width: '50px',
     height: '50px',
-    backgroundColor: '#00f2fe',
+    backgroundColor: '#8c00fe',
     borderRadius: '8px',
     position: 'fixed',
     transform: 'translate(-50%, -50%)', // Mengetengahkan kotak di posisi kursor
     pointerEvents: 'none', // Menjaga agar kursor tidak terhalang kotak
-    boxShadow: '0 0 15px rgba(0, 242, 254, 0.6)',
+    boxShadow: '0 0 15px rgba(111, 21, 208, 0.73)',
     transition: 'transform 0.05s ease-out', // Menambah efek pergerakan yang mulus
   },
 };
