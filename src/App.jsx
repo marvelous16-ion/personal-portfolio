@@ -40,16 +40,6 @@ export default function App() {
     },
     {
       id: 2,
-      type: 'certificate',
-      title: 'Sertifikasi Pelatihan Keamanan Penerbangan (AVSEC)',
-      category: 'Sertifikasi Keamanan',
-      year: '2022',
-      issuer: 'Kementerian Perhubungan / Bandara Soekarno-Hatta',
-      image: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?q=80&w=1200&auto=format&fit=crop',
-      description: 'Lisensi resmi personel keamanan penerbangan untuk pemeriksaan penumpang, barang kargo, dan akses area terbatas bandara.'
-    },
-    {
-      id: 3,
       type: 'documentation',
       title: 'Dokumentasi Monitoring Server & Infrastruktur',
       category: 'Dokumentasi Kerja',
