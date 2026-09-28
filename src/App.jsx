@@ -241,11 +241,11 @@ export default function App() {
                   <p className="text-[11px] text-gray-400">System Uptime & Stability</p>
                 </div>
                 <div className="bg-[#210c38]/50 p-3 rounded-xl border border-purple-800/30 text-center">
-                  <h4 className="text-2xl font-bold text-purple-400">3+</h4>
+                  <h4 className="text-2xl font-bold text-purple-400">2+</h4>
                   <p className="text-[11px] text-gray-400">Tahun Pengalaman Kerja</p>
                 </div>
                 <div className="bg-[#210c38]/50 p-3 rounded-xl border border-purple-800/30 text-center">
-                  <h4 className="text-2xl font-bold text-purple-400">10+</h4>
+                  <h4 className="text-2xl font-bold text-purple-400">15+</h4>
                   <p className="text-[11px] text-gray-400">Proyek Web Selesai</p>
                 </div>
                 <div className="bg-[#210c38]/50 p-3 rounded-xl border border-purple-800/30 text-center">
