@@ -62,13 +62,71 @@ export default function App() {
 
   // Perhitungan Pergerakan Mouse 3D Tilt
   const handleMouseMove = (e) => {
-    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-    
-    const { innerWidth, innerHeight } = window;
-    const x = ((clientX / innerWidth) - 0.5) * 35;
-    const y = ((clientY / innerHeight) - 0.5) * 35;
-    setMousePos({ x, y });
+    import { useState, useEffect } from 'react';
+
+export default function App() {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setPosition({ x: e.clientX, y: e.clientY });
+    };
+
+    // Mendaftarkan event listener pergerakan mouse
+    window.addEventListener('mousemove', handleMouseMove);
+
+    // Membersihkan listener saat komponen dilepas (unmount)
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
+
+  return (
+    <div style={styles.container}>
+      <h1 style={styles.text}>Arahkan kursor Anda di mana saja</h1>
+
+      {/* Kotak yang mengikuti kursor */}
+      <div
+        style={{
+          ...styles.box,
+          left: `${position.x}px`,
+          top: `${position.y}px`,
+        }}
+      />
+    </div>
+  );
+}
+
+// Styling sederhana menggunakan CSS-in-JS
+const styles = {
+  container: {
+    height: '100vh',
+    width: '100vw',
+    backgroundColor: '#121212',
+    overflow: 'hidden',
+    position: 'relative',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    cursor: 'crosshair',
+  },
+  text: {
+    color: '#ffffff',
+    fontFamily: 'sans-serif',
+    userSelect: 'none',
+  },
+  box: {
+    width: '50px',
+    height: '50px',
+    backgroundColor: '#00f2fe',
+    borderRadius: '8px',
+    position: 'fixed',
+    transform: 'translate(-50%, -50%)', // Mengetengahkan kotak di posisi kursor
+    pointerEvents: 'none', // Menjaga agar kursor tidak terhalang kotak
+    boxShadow: '0 0 15px rgba(0, 242, 254, 0.6)',
+    transition: 'transform 0.05s ease-out', // Menambah efek pergerakan yang mulus
+  },
+};
   };
 
   // Perhitungan Efek 3D Otomatis saat Halaman di-Scroll
